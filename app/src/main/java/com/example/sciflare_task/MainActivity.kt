@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         repository = Repository(application)
         getDetails = ArrayList()
 
-        binding.recyclerView.setLayoutManager(GridLayoutManager(this, 1))
+        binding.recyclerView.layoutManager = GridLayoutManager(this, 1)
         binding.recyclerView.setHasFixedSize(true)
 
         detailsViewModel = ViewModelProvider(this).get(ViewModel::class.java)
@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         detailsViewModel!!.getAllDetails.observe(this, object : Observer<List<Model>> {
 
             override fun onChanged(value: List<Model>) {
-                binding.recyclerView.setAdapter(adapter)
+                binding.recyclerView.adapter = adapter
                 adapter!!.getAllDatas(value)
                 Log.d("main", "onChanged: $value")
             }
